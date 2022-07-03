@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300&display=swap");
+@import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
+:root {
+    --primary-color: #faf9fa;
+    --secondary-color: #b6bccb;
+    --tertiary-color: #da2236;
+    --quaternary-color: #5e45d6;
+    --quinary-color: #8f87ae;
+    --senary-color: #03ac5a;
+    --septenary-color: #3f3839;
+    --octonary-color: white;
+    --nonary-color: black;
+    --text-color: #3f3839;
+    --text-secedary-color: #999999;
+    --danger-color: #da2236;
+    --border-color: #e0e0e0;
+    --orgeen-color: #F29F05;
+    --font-family-yekan: "iranyekan";
+}
+
+[data-theme="dark"] {
+    --font-family-yekan: "iranyekan";
+}
+
+body {
+    background-color: var(--octonary-color);
+    font-family: var(--font-family-yekan);
+    color: var(--text-color);
+    direction: rtl;
+}
+
+* {
+    scrollbar-color: rgb(122, 122, 122) #f6f6f6;
+    scrollbar-width: thin;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f6f6f6;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(122, 122, 122);
+    border-radius: 2px;
+    border: 3px solid #646680;
+}
+
+.option-input {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #34495e;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
