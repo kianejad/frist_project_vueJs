@@ -144,6 +144,7 @@ const propsItems = defineProps({
     default: () => []
   }
 });
+console.log(propsItems);
 const data = propsItems.ticket;
 
 function deleteModaleOpen() {

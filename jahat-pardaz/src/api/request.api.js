@@ -1,7 +1,7 @@
 import http from "@/services/http.service";
 
-export async function getRequest(filter, sortOne, sortTwo) {
-    console.log(filter, sortOne, sortTwo);
+export async function getRequest(filter, sort) {
+    console.log(filter, sort);
     try {
         const response = await http.get(
             `/ticket?${filter?.status ? `Ticket_status=${filter.status}` : ""}${
@@ -9,9 +9,9 @@ export async function getRequest(filter, sortOne, sortTwo) {
             }${filter?.priority ? `&preference=${filter.priority}` : ""}${
                 filter?.category ? `&category=${filter.category}` : ""
             }${
-                sortOne?.createAt ? `&_sort=createdAt&_order=${sortOne.createAt}` : ""
+                sort?.createAt ? `&_sort=createdAt&_order=${sort.createAt}` : ""
             }${
-                sortTwo?.replyDate ? `&_sort=replyDate&_order=${sortTwo.replyDate}` : ""
+                sort?.replyDate ? `&_sort=replyDate&_order=${sort.replyDate}` : ""
             }`
         );
         console.log(response.data);

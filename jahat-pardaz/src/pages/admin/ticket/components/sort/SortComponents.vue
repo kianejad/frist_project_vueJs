@@ -4,16 +4,18 @@
     <div class="row">
       <div class="create_at">
         <label> تاریخ ساخت :</label>
-        <select>
-          <option value="1">جدیدترین</option>
-          <option value="2">قدیمیترین</option>
+        <select v-model="createAt">
+          <option value=""> همه</option>
+          <option value="desc">جدیدترین</option>
+          <option value="asc">قدیمیترین</option>
         </select>
       </div>
       <div class="responsive_at">
         <label> تاریخ پاسخ :</label>
-        <select>
-          <option value="1">جدیدترین</option>
-          <option value="2">قدیمیترین</option>
+        <select v-model="replyDate">
+          <option value=""> همه</option>
+          <option value="desc">جدیدترین</option>
+          <option value="asc">قدیمیترین</option>
         </select>
       </div>
     </div>
@@ -22,7 +24,30 @@
 
 <script>
 export default {
-  name: "SortComponents"
+  name: "SortComponents",
+  data() {
+    return {
+      createAt: "",
+      replyDate: "",
+    };
+  },
+  methods: {
+    sort() {
+      this.$store.state.sort = {
+        createAt: this.createAt,
+        replyDate: this.replyDate,
+      };
+      this.$store.dispatch("RequestListAction");
+    },
+  },
+  watch: {
+    createAt: function (val) {
+      this.sort();
+    },
+    replyDate: function (val) {
+      this.sort();
+    },
+  },
 }
 </script>
 

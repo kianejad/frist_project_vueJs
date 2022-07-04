@@ -6,18 +6,18 @@
         <label>نوع تیکت : </label>
         <select v-model="ticketStatus">
           <option value="">همه</option>
-          <option value="1">جدید</option>
-          <option value="2">در حال رسیدگی</option>
-          <option value="3">بسته شده</option>
+          <option value="جدید">جدید</option>
+          <option value="در حال رسیدگی">در حال رسیدگی</option>
+          <option value="بسته شده">بسته شده</option>
         </select>
       </div>
       <div class="due_date">
         <label>وضعیت سر رسید : </label>
         <select v-model="dueDate">
           <option value="">همه</option>
-          <option value="1">منقضی شده</option>
-          <option value="2">نزدیک به انقضاء</option>
-          <option value="3">عادی</option>
+          <option value="منقضی شده">منقضی شده</option>
+          <option value="نزدیک به انقضاء">نزدیک به انقضاء</option>
+          <option value="عادی">عادی</option>
         </select>
       </div>
 
@@ -25,9 +25,9 @@
         <label>اولویت :</label>
         <select v-model="priority">
           <option value="">همه</option>
-          <option value="1">زیاد</option>
-          <option value="2">متوسط</option>
-          <option value="3">کم</option>
+          <option value="زیاد">زیاد</option>
+          <option value="متوسط">متوسط</option>
+          <option value="کم">کم</option>
         </select>
       </div>
       <div class="category">
@@ -44,8 +44,46 @@
 
 <script>
 export default {
-  name: "FilterComponent"
-}
+  name: "FilterComponent",
+  data() {
+    return {
+      ticketStatus: "",
+      dueDate: "",
+      priority: "",
+      category: "",
+    };
+  },
+  methods: {
+    filter() {
+      this.$store.state.filter = {
+        status: this.ticketStatus,
+        dueDate: this.dueDate,
+        priority: this.priority,
+        category: this.category,
+        tag: this.tag
+      };
+      this.$store.dispatch("RequestListAction");
+    }
+  },
+  mounted() {
+    this.filter();
+  },
+  watch: {
+    ticketStatus: function (value) {
+      this.filter();
+    },
+    dueDate: function (value) {
+      this.filter();
+    },
+    priority: function (value) {
+      this.filter();
+    },
+    category: function (value) {
+      this.filter();
+    }
+  }
+};
+
 </script>
 
 <style scoped>
@@ -151,30 +189,39 @@ select:after {
   border: 6px solid transparent;
   border-color: #fff transparent transparent transparent;
 }
+
 select:focus {
   outline: none;
 }
+
 select:focus:after {
   border-color: var(--primary-color) transparent transparent transparent;
 }
+
 select:focus option {
   background-color: var(--primary-color);
 }
+
 select:focus option:hover {
   background-color: var(--primary-color);
 }
+
 select:focus option:active {
   background-color: var(--primary-color);
 }
+
 select:focus option:focus {
   background-color: var(--primary-color);
 }
+
 option:hover {
   background-color: var(--primary-color);
 }
+
 option:active {
   background-color: var(--primary-color);
 }
+
 option:focus {
   background-color: var(--primary-color);
 }

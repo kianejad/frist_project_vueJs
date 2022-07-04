@@ -30,24 +30,23 @@
         </div>
         <div class="row">
           <div class="ticket_list">
-            <div v-if="tickets.value===null" class="request_null">
+            <div v-if="tickets===null" class="request_null">
               <p>درخواستی موجود نمیباشد</p>
             </div>
-            <div v-else-if="tickets.value !== null">
+            <div v-else-if="tickets !== null">
               <ul class="list_items">
-                <li v-for="(item,index) in tickets.value">
-                  <CardComponents :ticket="item" :key="index"/>
+                <li v-for="item in tickets" :key="item.id">
+                  <CardComponents :ticket="item"/>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="text-center">
-            <v-pagination
-                v-model="page"
-                :length="6"
-            ></v-pagination>
+          <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" v-for="(item,index) in totalPage" @click.prevent="changePage" key="index">{{ index + 1 }}</a>
+            <a href="#">&raquo;</a>
           </div>
         </div>
       </div>
@@ -58,32 +57,21 @@
 <script setup>
 import {SliderLayout, HeaderLayout} from "@/layout";
 import {InformationCard, FilterComponent, SortComponents, CardComponents} from "./components";
-import {reactive, watchEffect} from "vue";
 import {useStore} from "vuex";
-import {computed} from "vue";
+import {computed, watchEffect} from "vue";
 
-const tickets = reactive({
-  value: null
-});
-const totalRequest = reactive({
-  value: null
-});
-const page = reactive({
-  value: 1
-});
-const pageLimit = reactive({
-  value: 6
-});
+
 const store = useStore();
 store.dispatch("RequestListAction");
-const request = computed(() => store.state.tickets);
-watchEffect(() => {
-  tickets.value = request.value;
-  totalRequest.value = request.value.length;
-  page.value = totalRequest.value / pageLimit.value;
 
-  console.log(page.value);
-});
+const tickets = computed(() => store.getters.pageTickets);
+const totalPage = computed(() => store.getters.totalPages);
+
+const changePage = (page) => {
+  const pageNumber = page.target.innerText;
+  store.state.page = pageNumber;
+  store.dispatch("RequestListAction");
+};
 
 
 </script>
