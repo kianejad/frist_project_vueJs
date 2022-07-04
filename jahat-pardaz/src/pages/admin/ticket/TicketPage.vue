@@ -58,7 +58,7 @@
 import {SliderLayout, HeaderLayout} from "@/layout";
 import {InformationCard, FilterComponent, SortComponents, CardComponents} from "./components";
 import {useStore} from "vuex";
-import {computed, watchEffect} from "vue";
+import {computed} from "vue";
 
 
 const store = useStore();
@@ -88,7 +88,7 @@ const changePage = (page) => {
 
 .slider_layout {
   width: 15rem;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,7 +97,7 @@ const changePage = (page) => {
 
 .main_layout {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

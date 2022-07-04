@@ -1,7 +1,6 @@
 import http from "@/services/http.service";
 
 export async function getRequest(filter, sort) {
-    console.log(filter, sort);
     try {
         const response = await http.get(
             `/ticket?${filter?.status ? `Ticket_status=${filter.status}` : ""}${
@@ -14,7 +13,6 @@ export async function getRequest(filter, sort) {
                 sort?.replyDate ? `&_sort=replyDate&_order=${sort.replyDate}` : ""
             }`
         );
-        console.log(response.data);
         return response;
     } catch (error) {
         console.log(error);

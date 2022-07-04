@@ -20,7 +20,6 @@ export default createStore({
             return Math.ceil(state.tickets.length / state.pageSize);
         },
         pageTickets(state) {
-            console.log(state.tickets.slice((state.page - 1) * state.pageSize, state.page * state.pageSize));
             return state.tickets.slice((state.page - 1) * state.pageSize, state.page * state.pageSize);
         }
     },

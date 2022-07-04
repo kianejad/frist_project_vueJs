@@ -1,48 +1,30 @@
 <template>
-<!--  delete Modal-->
-<div class="modal" :class="{'is-active': isActive}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Delete</p>
-      <button class="delete" aria-label="close" @click="isActive = false"></button>
-    </header>
-    <section class="modal-card-body">
-      <p>Are you sure you want to delete this ticket?</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success" @click="isActive = false">Cancel</button>
-      <button class="button is-danger" @click="isActive = false">Delete</button>
-    </footer>
+  <!--  delete modal-->
+  <div class="modal" v-if="deleteModale === true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Modal</h5>
+        <button type="button" class="close" @click="closeModale">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this ticket?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" @click="closeModale">Close</button>
+        <button type="button" class="btn btn-primary" @click="deleteTicket">Delete</button>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
-<script setup>
-import {mapState} from "vuex";
-import {useStore} from "vuex";
-import {computed} from "vue";
-
-
-const deleteModal = reactive({
-  isActive: false
-});
-
-
+<script>
+export default {
+  name: "DeleteModal"
+}
 </script>
 
 <style scoped>
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <h1>EditModal</h1>
+<h2>
+  Edit Modal
+</h2>
 </template>
 
 <script>

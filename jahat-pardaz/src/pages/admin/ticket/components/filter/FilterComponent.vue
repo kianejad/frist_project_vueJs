@@ -65,9 +65,6 @@ export default {
       this.$store.dispatch("RequestListAction");
     }
   },
-  mounted() {
-    this.filter();
-  },
   watch: {
     ticketStatus: function (value) {
       this.filter();

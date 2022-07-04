@@ -121,18 +121,19 @@
         </div>
       </div>
     </div>
-    <div class="delete_modale" v-if="deleteModale === true">
-      <DeleteModal/>
-    </div>
-    <div class="edit_modale" v-if="editModale === true">
-      <EditModal/>
-    </div>
+  </div>
+  <DeleteModale :data="data"
+                :deleteModale="deleteModale"
+                :deleteModaleOpen="deleteModaleOpen"
+                :closeModale="closeModale"/>
+  <div class="edit_modale" v-if="editModale === true">
+    <EditModale :data="data" :editModale="editModale" :editModaleOpen="editModaleOpen" :closeModale="closeModale"/>
   </div>
 </template>
 
 <script setup>
+import {DeleteModale, EditModale} from '../index.js'
 import {ref, defineProps} from "vue";
-import {EditModal, DeleteModal} from "@/pages/admin/ticket/components";
 
 const toolsBtn = ref(false);
 const deleteModale = ref(false);
@@ -144,7 +145,6 @@ const propsItems = defineProps({
     default: () => []
   }
 });
-console.log(propsItems);
 const data = propsItems.ticket;
 
 function deleteModaleOpen() {
@@ -164,7 +164,6 @@ function closeModale() {
 
 function changeTools() {
   toolsBtn.value = !toolsBtn.value;
-  console.log(toolsBtn.value);
 }
 
 function showMore() {
@@ -356,117 +355,6 @@ function moreShowLabel() {
 .delete {
   color: var(--danger-color);
   cursor: pointer;
-}
-
-.delete_modale {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(63, 56, 57, 0.3);
-
-}
-
-.modale {
-  position: absolute;
-  background-color: var(--octonary-color);
-  border-radius: 0.4rem;
-  border: 1px solid #e0e0e0;
-  left: 35%;
-  top: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1rem 0.5rem;
-  gap: 0.3rem;
-}
-
-.modale > p {
-  font-size: 14px;
-}
-
-.modale_header {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.modale_header > p {
-  font-size: 14px;
-}
-
-.modale_header > svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-left: 0.5rem;
-  color: var(--danger-color);
-}
-
-.modale_body {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.modale_footer {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.modale_footer > button {
-  width: 9rem;
-  height: 2rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.4rem;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.cancelBtn {
-  background-color: var(--quaternary-color);
-  color: var(--octonary-color);
-}
-
-.deleteBtn {
-  background-color: var(--danger-color);
-  color: var(--octonary-color);
-}
-
-.edit_modale {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(63, 56, 57, 0.3);
-}
-
-.modale {
-  position: absolute;
-  background-color: var(--octonary-color);
-  border-radius: 0.4rem;
-  border: 1px solid #e0e0e0;
-  left: 35%;
-  top: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1rem 0.5rem;
-  gap: 0.3rem;
 }
 
 .show_more {
